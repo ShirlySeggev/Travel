@@ -11,6 +11,10 @@ button {
     cursor: pointer;
 }
 
+button:hover {
+    background-color: #2196F3;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
