@@ -40,6 +40,13 @@ function addEventListenrs() {
                 console.log('err!!!', err);
             })
     })
+    document.querySelector('.search-btn').addEventListener('click', (ev) => {
+        onSearch()
+    });
+    document.querySelector('.btn-copy-location').addEventListener('click', (ev) => {
+        onCopyLocation()
+    });
+
 }
 
 
@@ -50,4 +57,3 @@ function getPosition() {
         navigator.geolocation.getCurrentPosition(resolve, reject)
     })
 }
-

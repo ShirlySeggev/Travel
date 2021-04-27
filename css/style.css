@@ -1,0 +1,81 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(162, 216, 211);
+    margin: 0;
+}
+
+button {
+    cursor: pointer;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5%;
+}
+
+.location-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5%;
+}
+
+.body-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5%;
+}
+
+.data-container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 400px;
+    margin-left: 2.5%;
+}
+
+.weather-container {
+    background-color: white;
+    height: 50%;
+    margin-bottom: 2.5%;
+}
+
+.locations-table {
+    background-color: grey;
+    height: 50%;
+}
+
+.search input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 60%;
+    background: #f1f1f1;
+}
+
+.search button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    /* Prevent double borders */
+    cursor: pointer;
+}
+
+.search button:hover {
+    background: #0b7dda;
+}
+
+form.search::after {
+    content: "";
+    clear: both;
+    display: table;
+}
