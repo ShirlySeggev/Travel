@@ -29,7 +29,18 @@
         <div class="data-container">
             <div class="weather-container"></div>
             <div class="locations-table">
-                <p>Locations: <span class="locs"></span></p>
+                <table border='1' style='border-collapse:collapse'>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Latitude </th>
+                        <th>Longitude </th>
+                        <th>Actions</th>
+                    </tr>
+                    <tbody class="locations-container">
+                    </tbody>
+                </table>
+                <!-- <p>Locations: <span class="locs"></span></p> -->
             </div>
         </div>
     </section>
@@ -41,7 +52,8 @@
     </section>
 
 
-
+    <script src="lib/swal.js"></script>
+    <script src="lib/axios.js"></script>
 
     <script type="module" src="js/app.controller.js"></script>
 </body>

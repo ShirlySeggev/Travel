@@ -1,10 +1,18 @@
+import { locService } from './loc.service.js'
+import { appController } from '../app.controller.js';
+import { storageService } from './storage.service.js';
+
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    deleteMarker,
+    getMarkers,
+    panTo,
 }
 
 var gMap;
+var gMarkers = [];
+const MARK_KEY = 'markers';
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
     console.log('InitMap');
@@ -16,17 +24,33 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                     center: { lat, lng },
                     zoom: 15
                 })
-            console.log('Map!', gMap);
+            gMap.addListener('click', (mapsMouseEvent) => {
+                    appController.openModal(mapsMouseEvent.latLng);
+
+                })
+                // console.log('Map!', gMap);
         })
 }
 
-function addMarker(loc) {
+function addMarker(loc, name) {
     var marker = new google.maps.Marker({
         position: loc,
         map: gMap,
-        title: 'Hello World!'
+        title: name
     });
+    // marker.setMap(gMap);
+    gMarkers.push(marker);
+    // storageService.saveToStorage(MARK_KEY, gMarkers);
     return marker;
+}
+
+function deleteMarker(markerName) {
+    const markerIdx = gMarkers.findIndex(marker => {
+        return marker.title === markerName;
+    });
+    gMarkers[markerIdx].setMap(null);
+    gMarkers.splice(markerIdx, 1);
+    // storageService.saveToStorage(MARK_KEY, gMarkers);
 }
 
 function panTo(lat, lng) {
@@ -48,4 +72,16 @@ function _connectGoogleApi() {
         elGoogleApi.onload = resolve;
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
+}
+
+
+function _getMarkers() {
+    let savedMarkers = storageService.loadFromStorage(MARK_KEY);
+    if (!savedMarkers || !savedMarkers.length) gMarkers = [];
+    else gMarkers = savedMarkers;
+}
+
+function getMarkers() {
+    _getMarkers();
+    return gMarkers;
 }
