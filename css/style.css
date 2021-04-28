@@ -15,6 +15,7 @@ button {
     display: flex;
     justify-content: space-between;
     margin-bottom: 5%;
+    background-color: aqua
 }
 
 .location-container {
